@@ -1,4 +1,4 @@
-# Zero-Day Attack Detection with Reinforcement Learning
+# Analysis of Network Anomaly Detection Using Q-Learning and Deep Q-Learning Approaches in Reinforcement Learning for Intrusion Detection System Development
 
 This repository contains implementations of Q-Learning and Deep Q-Network (DQN) approaches for network intrusion detection, with a special focus on detecting previously unseen "zero-day" attacks.
 
