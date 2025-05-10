@@ -53,18 +53,20 @@ The project uses the [UNSW-NB15 dataset](https://research.unsw.edu.au/projects/u
 Each approach evaluates 5 different hyperparameter schemes:
 
 ### Q-Learning Schemes
-Scheme 1: {'alpha': 0.01, 'gamma': 0.8, 'epsilon': 1.0, 'epsilon_decay': 0.8, 'epsilon_min': 0.05} 
-Scheme 2: {'alpha': 0.1, 'gamma': 0.95, 'epsilon': 1.0, 'epsilon_decay': 0.95, 'epsilon_min': 0.2} 
-Scheme 3: {'alpha': 0.03, 'gamma': 0.99, 'epsilon': 0.8, 'epsilon_decay': 0.99, 'epsilon_min': 0.3} 
-Scheme 4: {'alpha': 0.5, 'gamma': 0.9, 'epsilon': 0.7, 'epsilon_decay': 0.9, 'epsilon_min': 0.1} 
-Scheme 5: {'alpha': 0.2, 'gamma': 0.7, 'epsilon': 0.9, 'epsilon_decay': 0.85, 'epsilon_min': 0.01}
+
+- Scheme 1: {'alpha': 0.01, 'gamma': 0.8, 'epsilon': 1.0, 'epsilon_decay': 0.8, 'epsilon_min': 0.05} 
+- Scheme 2: {'alpha': 0.1, 'gamma': 0.95, 'epsilon': 1.0, 'epsilon_decay': 0.95, 'epsilon_min': 0.2} 
+- Scheme 3: {'alpha': 0.03, 'gamma': 0.99, 'epsilon': 0.8, 'epsilon_decay': 0.99, 'epsilon_min': 0.3} 
+- Scheme 4: {'alpha': 0.5, 'gamma': 0.9, 'epsilon': 0.7, 'epsilon_decay': 0.9, 'epsilon_min': 0.1} 
+- Scheme 5: {'alpha': 0.2, 'gamma': 0.7, 'epsilon': 0.9, 'epsilon_decay': 0.85, 'epsilon_min': 0.01}
 
 ### DQN Schemes
-Scheme 1: {'learning_rate': 0.0001, 'epsilon_decay': 0.93, 'batch_size': 32, 'buffer_size': 50000} 
-Scheme 2: {'learning_rate': 0.0003, 'epsilon_decay': 0.95, 'batch_size': 64, 'buffer_size': 50000} 
-Scheme 3: {'learning_rate': 0.0005, 'epsilon_decay': 0.97, 'batch_size': 128, 'buffer_size': 50000} 
-Scheme 4: {'learning_rate': 0.001, 'epsilon_decay': 0.98, 'batch_size': 256, 'buffer_size': 50000} 
-Scheme 5: {'learning_rate': 0.003, 'epsilon_decay': 0.99, 'batch_size': 512, 'buffer_size': 50000}
+
+- Scheme 1: {'learning_rate': 0.0001, 'epsilon_decay': 0.93, 'batch_size': 32, 'buffer_size': 50000} 
+- Scheme 2: {'learning_rate': 0.0003, 'epsilon_decay': 0.95, 'batch_size': 64, 'buffer_size': 50000} 
+- Scheme 3: {'learning_rate': 0.0005, 'epsilon_decay': 0.97, 'batch_size': 128, 'buffer_size': 50000} 
+- Scheme 4: {'learning_rate': 0.001, 'epsilon_decay': 0.98, 'batch_size': 256, 'buffer_size': 50000} 
+- Scheme 5: {'learning_rate': 0.003, 'epsilon_decay': 0.99, 'batch_size': 512, 'buffer_size': 50000}
 
 
 ## Evaluation Metrics
