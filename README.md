@@ -1,130 +1,74 @@
-# Analysis of Network Anomaly Detection Using Q-Learning and Deep Q-Learning Approaches in Reinforcement Learning for Intrusion Detection System Development
+# Network Intrusion Detection with Reinforcement Learning
 
-This repository implements and compares traditional Q-Learning and Deep Q-Network (DQN) approaches for network intrusion detection, with a special focus on detecting previously unseen "zero-day" attacks.
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-1.7%2B-orange)](https://pytorch.org/)
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-0.24%2B-green)](https://scikit-learn.org/)
 
-![Network Security](https://img.shields.io/badge/Network-Security-blue)
-![Reinforcement Learning](https://img.shields.io/badge/Reinforcement-Learning-green)
-![Python](https://img.shields.io/badge/Python-3.8%2B-yellow)
+## Zero-Day Attack Detection Research using Q-Learning and Deep Q-Network
 
-## Research Overview
+This repository contains the implementation and comparison of two reinforcement learning algorithms for network intrusion detection, with a specific focus on the ability to detect zero-day attacks.
 
-This project investigates how reinforcement learning techniques can be applied to detect network anomalies, particularly zero-day attacks. Two distinct approaches are implemented and compared:
+## 📋 Research Description
 
-1. **Traditional Q-Learning**: A tabular reinforcement learning approach with state discretization via clustering
-2. **Deep Q-Networks (DQN)**: A deep learning-based approach for handling continuous state spaces
+This research develops and compares two reinforcement learning approaches for network intrusion detection:
+- **Q-Learning**: A simple yet efficient tabular algorithm
+- **Deep Q-Network (DQN)**: A more complex neural network-based algorithm
 
-The research specifically addresses the challenge of detecting attack types ("Fuzzers" and "Reconnaissance") that are deliberately excluded from the training data but present in the testing data, simulating zero-day attack scenarios.
+Both algorithms are trained to detect normal attacks and evaluated on their ability to detect zero-day attacks that were not seen during training. We use the UNSW-NB15 dataset with Fuzzers and Reconnaissance attack categories as a simulation of zero-day attacks.
 
-## Dataset
+## 🎯 Research Objectives
 
-The project uses the [UNSW-NB15 dataset](https://research.unsw.edu.au/projects/unsw-nb15-dataset) which contains a mixture of normal network traffic and various attack types. The data preparation process involves:
+1. Develop a reinforcement learning-based network intrusion detection model
+2. Evaluate and compare the performance of Q-Learning and DQN in detecting:
+   - Recognized standard attacks
+   - Previously unseen zero-day attacks
+3. Optimize parameters to achieve the best detection performance
+4. Analyze the generalization capabilities of both algorithms
 
-1. Removing "Fuzzers" and "Reconnaissance" attack categories from the training set
-2. Creating a specialized zero-day evaluation dataset containing only these attack types plus normal traffic
-3. Applying preprocessing techniques including normalization, feature selection, and class balancing
+## 📊 Dataset
 
-## Implementation Details
+This research uses the **UNSW-NB15** dataset containing normal network traffic data and various types of attacks. The dataset is divided into:
+- **Training data**: Common attacks (without Fuzzers and Reconnaissance)
+- **Testing data**: All types of attacks
+- **Zero-day evaluation data**: Only Fuzzers and Reconnaissance attacks + normal traffic
 
-### Data Preprocessing
-- Handling missing values and duplicates
-- Feature encoding for categorical variables
-- Class imbalance handling with SMOTE, Random Undersampling, and SMOTETomek
-- Feature selection with SelectKBest and removal of highly correlated features
-- Creation of separate datasets for regular testing and zero-day evaluation
+## 📈 Research Results
 
-### Q-Learning Implementation
-- Environment representation with state discretization via clustering (MiniBatchKMeans)
-- Simple reward structure for correct/incorrect classifications
-- Q-table initialization and update with standard Q-Learning formula
-- Epsilon-greedy policy with decay for balancing exploration and exploitation
-- Systematic evaluation of 5 hyperparameter schemes
+### Q-Learning
+- Best model: **Scheme 1** (alpha=0.01, gamma=0.8, epsilon=1.0, epsilon_decay=0.8, epsilon_min=0.05)
+- Standard test data accuracy: 92.43%
+- Zero-day data accuracy: 88.91%
+- Zero-day data detection rate (recall): 69.29%
 
-### DQN Implementation
-- Neural network architecture for Q-function approximation
-- Experience replay buffer for improved stability
-- Target network to reduce overestimation bias
-- Enhanced reward structure to prioritize attack detection
-- Class-weighted loss function
-- Gradient clipping to prevent exploding gradients
-- Automatic model checkpoint and early stopping
+### Deep Q-Network (DQN)
+- Best model: **Scheme 1** (learning_rate=0.0001, epsilon_decay=0.93, batch_size=32, buffer_size=50000)
+- Standard test data accuracy: 99.76%
+- Zero-day data accuracy: 99.58%
+- Zero-day data detection rate (recall): 99.34%
 
-## Hyperparameter Schemes
+### Comparison
+DQN shows significantly better performance than Q-Learning, especially in detecting zero-day attacks with a detection rate difference of about 30%. However, Q-Learning has advantages in terms of computational efficiency and lower memory requirements.
 
-Each approach evaluates 5 different hyperparameter schemes:
+## 🔬 Methodology
 
-### Q-Learning Schemes
+Both algorithms use the same techniques for data preprocessing:
+1. Feature cleaning and normalization
+2. Handling missing values
+3. Feature selection
+4. Class balancing using SMOTE+Tomek
 
-- Scheme 1: {'alpha': 0.01, 'gamma': 0.8, 'epsilon': 1.0, 'epsilon_decay': 0.8, 'epsilon_min': 0.05} 
-- Scheme 2: {'alpha': 0.1, 'gamma': 0.95, 'epsilon': 1.0, 'epsilon_decay': 0.95, 'epsilon_min': 0.2} 
-- Scheme 3: {'alpha': 0.03, 'gamma': 0.99, 'epsilon': 0.8, 'epsilon_decay': 0.99, 'epsilon_min': 0.3} 
-- Scheme 4: {'alpha': 0.5, 'gamma': 0.9, 'epsilon': 0.7, 'epsilon_decay': 0.9, 'epsilon_min': 0.1} 
-- Scheme 5: {'alpha': 0.2, 'gamma': 0.7, 'epsilon': 0.9, 'epsilon_decay': 0.85, 'epsilon_min': 0.01}
+The main differences are in the model architecture:
+- Q-Learning: Tabular approach with state discretization using K-Means clustering
+- DQN: Neural network with 2 hidden layers (64 and 32 neurons)
 
-### DQN Schemes
+## 🙏 Acknowledgements
 
-- Scheme 1: {'learning_rate': 0.0001, 'epsilon_decay': 0.93, 'batch_size': 32, 'buffer_size': 50000} 
-- Scheme 2: {'learning_rate': 0.0003, 'epsilon_decay': 0.95, 'batch_size': 64, 'buffer_size': 50000} 
-- Scheme 3: {'learning_rate': 0.0005, 'epsilon_decay': 0.97, 'batch_size': 128, 'buffer_size': 50000} 
-- Scheme 4: {'learning_rate': 0.001, 'epsilon_decay': 0.98, 'batch_size': 256, 'buffer_size': 50000} 
-- Scheme 5: {'learning_rate': 0.003, 'epsilon_decay': 0.99, 'batch_size': 512, 'buffer_size': 50000}
+- UNSW-NB15 Dataset: [https://research.unsw.edu.au/projects/unsw-nb15-dataset](https://research.unsw.edu.au/projects/unsw-nb15-dataset)
 
+## 📧 Contact
 
-## Evaluation Metrics
+Please contact the author for questions or research collaborations.
 
-Both approaches are evaluated using comprehensive metrics, focusing on their ability to detect zero-day attacks:
+---
 
-- **Accuracy**: Overall correctness of predictions
-- **Precision**: Proportion of true positives among positive predictions
-- **Recall (Detection Rate)**: Proportion of true positives identified correctly
-- **F1-Score**: Harmonic mean of precision and recall
-- **False Positive Rate (FPR)**: Proportion of false positives among negative instances
-- **Area Under ROC Curve (AUC)**: Classification performance across thresholds
-
-## Results and Visualizations
-
-The project includes extensive visualizations to analyze model performance:
-
-1. **Confusion Matrices**: Comparing prediction performance across schemes for both test and zero-day scenarios
-2. **Training vs. Test Accuracy**: Monitoring overfitting during training
-3. **ROC and Precision-Recall Curves**: Evaluating classification performance across thresholds
-4. **Hyperparameter Comparison**: Analyzing the impact of different parameter settings
-5. **Q-Learning vs. DQN Comparison**: Contrasting both approaches on key metrics
-
-## Repository Structure
-
-- **dqn pake schema overfitt (2) (1).ipynb**: Implementation of the Deep Q-Network approach
-- **qlearning 5 skema.ipynb**: Implementation of the traditional Q-Learning approach
-- **README.md**: This documentation file
-- **requirements.txt**: List of required Python packages
-
-## Usage
-
-### Prerequisites
-pandas numpy scikit-learn matplotlib seaborn torch tqdm joblib imbalanced-learn
-
-
-### Running the Notebooks
-
-1. Download the UNSW-NB15 dataset files (`UNSW_NB15_training-set.csv` and `UNSW_NB15_testing-set.csv`)
-2. Place the dataset files in the same directory as the notebooks
-3. Run the preprocessing cells in either notebook to generate the processed datasets
-4. Execute the model training and evaluation cells
-5. View the generated visualizations and performance metrics
-
-## Key Findings
-
-- Both Q-Learning and DQN approaches can detect zero-day attacks with varying levels of success
-- The addition of class-weighted loss functions and enhanced reward structures significantly improves zero-day detection
-- State representation via clustering provides effective discretization for Q-Learning
-- Hyperparameters significantly impact the model's ability to generalize to unseen attack types
-- Trade-offs exist between detection rate and false positive rate across different schemes
-
-## Citation
-
-If you use this code for academic research, please cite:
-@misc{ZeroDayAttackRL, author = {Your Name}, title = {Zero-Day Attack Detection with Reinforcement Learning}, year = {2023}, publisher = {GitHub}, journal = {GitHub repository}, howpublished = {\url{https://github.com/yourusername/zero-day-attack-detection}} }
-
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+© 2025. All rights reserved.
