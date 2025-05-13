@@ -1,9 +1,5 @@
 # Network Intrusion Detection with Reinforcement Learning
 
-[![Python](https://img.shields.io/badge/Python-3.7%2B-blue)](https://www.python.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-1.7%2B-orange)](https://pytorch.org/)
-[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-0.24%2B-green)](https://scikit-learn.org/)
-
 ## Zero-Day Attack Detection Research using Q-Learning and Deep Q-Network
 
 This repository contains the implementation and comparison of two reinforcement learning algorithms for network intrusion detection, with a specific focus on the ability to detect zero-day attacks.
@@ -66,9 +62,10 @@ The main differences are in the model architecture:
 - UNSW-NB15 Dataset: [https://research.unsw.edu.au/projects/unsw-nb15-dataset](https://research.unsw.edu.au/projects/unsw-nb15-dataset)
 
 ## 📧 Contact
+adhit1312@gmail.com
+adhitamaw@student.telkomuniversity.ac.id
 
-Please contact the author for questions or research collaborations.
-
+   
 ---
 
 © 2025. All rights reserved.
